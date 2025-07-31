@@ -1,0 +1,26 @@
+class Solution(object):
+    def maxSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        seen = set()
+        sum = 0
+        maxNum = -101
+        for x in nums:
+            if x > 0:
+                seen.add(x)
+            if x > maxNum:
+                maxNum  = x
+        
+        for x in seen:
+            sum += x
+        
+        
+        if sum == 0:
+            return maxNum
+        else:
+            return sum
+
+        
+            
