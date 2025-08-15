@@ -14,6 +14,3 @@ class Solution(object):
             pascal.append(row)
         
         return pascal
-"""
-problem number 118
-"""
