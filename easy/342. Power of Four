@@ -17,3 +17,7 @@ class Solution(object):
                 return True
         else:
             return False
+
+"""
+can do without a loop by checking if power of 2 like previous exercise and that the only 1 bit is in odd position
+"""
