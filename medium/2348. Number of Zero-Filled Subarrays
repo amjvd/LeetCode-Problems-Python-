@@ -1,0 +1,20 @@
+class Solution(object):
+    def zeroFilledSubarray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        length = len(nums)
+        zeros = 0
+        current = 0  
+
+        for x in nums:
+            if x == 0:
+                current += 1  
+            else:
+                zeros += (current * (current + 1)) // 2
+                current = 0
+
+        zeros += (current * (current + 1)) // 2  #if all zeros
+
+        return zeros
