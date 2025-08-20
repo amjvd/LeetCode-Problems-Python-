@@ -1,0 +1,29 @@
+class Solution(object):
+    def maximalSquare(self, matrix):
+        """
+        :type matrix: List[List[str]]
+        :rtype: int
+        """
+        if not matrix or not matrix[0]:
+            return 0
+
+        rows = len(matrix)
+        cols = len(matrix[0])
+        dynamicT = [[0] * cols for _ in range(rows)]   #creates dyamic table of 0s and replaces with number of largest square
+        maxSize = 0
+
+        for i in range(rows):
+            for j in range(cols):
+                if matrix[i][j] == "1":
+                    if i == 0 or j == 0:
+                        dynamicT[i][j] = 1  # First row or column
+                    else:
+                        dynamicT[i][j] = min(
+                            dynamicT[i-1][j],     # top
+                            dynamicT[i][j-1],     # left
+                            dynamicT[i-1][j-1]    # topleft
+                        ) + 1
+                    maxSize = max(maxSize, dynamicT[i][j])
+
+        return maxSize * maxSize  # Return area 
+    
