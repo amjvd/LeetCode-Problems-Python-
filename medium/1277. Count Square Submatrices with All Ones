@@ -1,0 +1,27 @@
+class Solution(object):
+    def countSquares(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: int
+        """
+        squares = 0
+        rows = len(matrix)
+        cols = len(matrix[0])
+
+        dynamicT = [[0] * cols for _ in range(rows)]  #dynamic table to store num of squares that end at each value
+
+        for x in range(rows):
+            for y in range(cols):
+                if matrix[x][y] == 1:
+                    if x == 0 or y == 0:
+                        dynamicT[x][y] = 1
+                        squares += 1
+                    else:
+                        dynamicT[x][y] = min(
+                            dynamicT[x][y-1],  #left
+                            dynamicT[x-1][y],  #top
+                            dynamicT[x-1][y-1] #topleft
+                        ) + 1
+                        squares += dynamicT[x][y]  #add num of squares that end there
+        
+        return squares
