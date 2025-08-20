@@ -1,0 +1,48 @@
+class Solution(object):
+    def maximalRectangle(self, matrix):
+        """
+        :type matrix: List[List[str]]
+        :rtype: int
+        """
+        if not matrix or not matrix[0]:
+            return 0
+
+        rows = len(matrix)
+        cols = len(matrix[0])
+        sumMatrix = [0] * cols
+        max_area = 0
+
+        def updateSumMatrix(matrix, row):
+            for i in range(cols):
+                if matrix[row][i] == '1':
+                    sumMatrix[i] += 1
+                else:
+                    sumMatrix[i] = 0
+
+        def area():
+            stack = []
+            index = 0
+            local_max = 0
+
+            while index < cols:
+                if not stack or sumMatrix[index] >= sumMatrix[stack[-1]]:
+                    stack.append(index)
+                    index += 1
+                else:
+                    top = stack.pop()
+                    width = index if not stack else index - stack[-1] - 1
+                    local_max = max(local_max, sumMatrix[top] * width)
+
+            while stack:
+                top = stack.pop()
+                width = index if not stack else index - stack[-1] - 1
+                local_max = max(local_max, sumMatrix[top] * width)
+
+            return local_max
+
+        # Process each row
+        for row in range(rows):
+            updateSumMatrix(matrix, row)
+            max_area = max(max_area, area())
+
+        return max_area
