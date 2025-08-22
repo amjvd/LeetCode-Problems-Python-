@@ -1,0 +1,31 @@
+class Solution(object):
+    def minimumArea(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        rows = len(grid)
+        cols = len(grid[0])
+        minX = rows
+        maxX = 0
+        minY = cols
+        maxY = 0
+        found = False
+
+        for x in range(rows):
+            for y in range(cols):
+                if grid[x][y] == 1:
+                    found = True
+                    if x < minX:
+                        minX = x
+                    if x > maxX:
+                        maxX = x
+                    if y < minY:
+                        minY = y
+                    if y > maxY:
+                        maxY = y
+
+        if not found:
+            return 0
+
+        return (maxX - minX + 1) * (maxY - minY + 1)
