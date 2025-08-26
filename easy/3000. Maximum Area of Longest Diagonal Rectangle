@@ -1,0 +1,22 @@
+class Solution(object):
+    def areaOfMaxDiagonal(self, dimensions):
+        """
+        :type dimensions: List[List[int]]
+        :rtype: int
+        """
+        rect = len(dimensions)
+        diag = 0
+        max_diag = 0
+        area = 0
+
+
+        for x in range(rect):
+            diag = (dimensions[x][0] * dimensions[x][0]) + (dimensions[x][1] * dimensions[x][1])
+            if diag > max_diag:
+                max_diag = diag
+                area = dimensions[x][0] * dimensions[x][1]
+            if diag == max_diag:
+                if dimensions[x][0] * dimensions[x][1] > area:
+                    area = dimensions[x][0] * dimensions[x][1]
+
+        return area
