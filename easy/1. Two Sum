@@ -1,0 +1,15 @@
+class Solution(object):
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        
+        seen = {}
+        for x in range(len(nums)):
+            diff = target - nums[x]
+            if diff in seen:
+                return x, seen[diff]
+            else:
+                seen[nums[x]] = x
