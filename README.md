@@ -9,9 +9,9 @@ My goal is to strengthen my understanding of **coding logic, data structures, an
 
 ## Structure
 Solutions are organised by difficulty:
-- `easy/` – Easy-level problems  
-- `medium/` – Medium-level problems  
-- `hard/` – Hard-level problems  
+- `easy` – Easy-level problems  
+- `medium` – Medium-level problems  
+- `hard` – Hard-level problems  
 
 ---
 
