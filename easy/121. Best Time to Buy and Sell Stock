@@ -1,0 +1,21 @@
+class Solution(object):
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        lowest = 0
+        profit = 0
+        count = 1
+        tempProfit = 0
+
+        while lowest + count != len(prices):
+            if prices[lowest + count] < prices[lowest]:
+                lowest = lowest + count
+                count = 0
+            else:
+                tempProfit = prices[lowest + count] - prices[lowest]
+            if tempProfit > profit:
+                profit = tempProfit
+            count += 1
+        return profit
