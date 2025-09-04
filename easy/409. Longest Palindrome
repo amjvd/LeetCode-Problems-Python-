@@ -1,0 +1,28 @@
+class Solution(object):
+    def longestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        seen = {}
+        output = 0
+        for char in s:
+            if char not in seen:
+                seen[char] = 1
+            else:
+                seen[char] += 1
+        
+        x = seen.values()
+        
+        
+        has_odd = False
+        for count in seen.values():
+            if count % 2 == 0:
+                output += count
+            else:
+                output += count - 1
+                has_odd = True
+        if has_odd:
+            output += 1
+        
+        return output
