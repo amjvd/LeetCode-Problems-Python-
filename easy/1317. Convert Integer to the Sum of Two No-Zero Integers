@@ -1,0 +1,16 @@
+class Solution(object):
+    def getNoZeroIntegers(self, n):
+        """
+        :type n: int
+        :rtype: List[int]
+        """
+        def isZero(x):
+            if "0" in str(x):
+                return True
+            else:
+                return False
+        for x in range(1,n):
+                diff = n - x
+                if isZero(diff) == False and isZero(x) == False:
+                    return diff, x
+            
