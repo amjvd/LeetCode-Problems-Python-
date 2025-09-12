@@ -1,0 +1,17 @@
+class Solution(object):
+    def doesAliceWin(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        vowels = set(("a","e","i","o","u"))
+        count = 0
+
+        for x in s:
+            if x in vowels:
+                count +=1
+        
+        if count == 0:
+            return False
+        else:
+            return True
