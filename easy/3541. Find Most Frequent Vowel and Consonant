@@ -1,0 +1,21 @@
+class Solution(object):
+    def maxFreqSum(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        vowels = set("aeiou")
+        
+        vowel_counts = {}
+        consonant_counts = {}
+
+        for x in s:
+            if x in vowels:
+                vowel_counts[x] = vowel_counts.get(x, 0) + 1
+            else:
+                consonant_counts[x] = consonant_counts.get(x, 0) + 1
+
+        max_v = max(vowel_counts.values()) if vowel_counts else 0
+        max_c = max(consonant_counts.values()) if consonant_counts else 0
+
+        return max_v + max_c
