@@ -1,0 +1,21 @@
+class Solution(object):
+    def canBeTypedWords(self, text, brokenLetters):
+        """
+        :type text: str
+        :type brokenLetters: str
+        :rtype: int
+        """
+        broken = set(brokenLetters)
+        words = text.split(" ")
+        typables = 0
+
+        for word in words:
+            typable = True
+            for char in word:
+                if char in broken:
+                    typable = False
+                    break
+            if typable:
+                typables +=1
+                
+        return typables
