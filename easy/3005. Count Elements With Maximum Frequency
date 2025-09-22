@@ -1,0 +1,22 @@
+class Solution(object):
+    def maxFrequencyElements(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        seen = {}
+
+        for x in nums:
+            if x in seen:
+                seen[x] +=1
+            else:
+                seen[x] = 1
+        maxN = 0
+        times = 0
+        for y in seen:
+            if seen[y] > maxN:
+                maxN = seen[y]
+                times = 1
+            elif seen[y] == maxN:
+                times +=1
+        return maxN * times
