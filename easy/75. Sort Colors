@@ -1,0 +1,25 @@
+class Solution(object):
+    def sortColors(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: None Do not return anything, modify nums in-place instead.
+        """
+        colours = {}
+        output = []
+        
+        for x in nums:
+            if x in colours:
+                colours[x] +=1
+            else:
+                colours[x] = 1
+        
+        def add(num, times):
+            for z in range(0,times):
+                output.append(num)
+            
+        for y in [0,1,2]:
+            if y in colours:
+                times = colours[y]
+                add(y, times)
+
+        nums[:] = output
