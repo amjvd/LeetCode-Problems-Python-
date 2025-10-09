@@ -1,0 +1,25 @@
+class Solution(object):
+    def successfulPairs(self, spells, potions, success):
+        """
+        :type spells: List[int]
+        :type potions: List[int]
+        :type success: int
+        :rtype: List[int]
+        """
+        def find(spell, potions, success):
+            low = 0
+            high = len(potions) - 1
+            while low <= high:
+                mid = (low + high) // 2
+                if spell * potions[mid] >= success:
+                    high = mid - 1
+                else:
+                    low = mid + 1
+            return len(potions) - low
+
+        potions.sort()
+        output = []
+        for spell in spells:
+            count = find(spell, potions, success)
+            output.append(count)
+        return output
