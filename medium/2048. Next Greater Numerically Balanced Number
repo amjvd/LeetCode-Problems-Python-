@@ -1,0 +1,23 @@
+class Solution(object):
+    def nextBeautifulNumber(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        def is_balanced(num):
+            num_str = str(num)
+            seen = {}
+            for digit in num_str:
+                if digit in seen:
+                    seen[digit] += 1
+                else:
+                    seen[digit] = 1
+            for digit in seen:
+                if int(digit) != seen[digit]:
+                    return False
+            return True
+        n += 1 
+        while True:
+            if is_balanced(n):
+                return n
+            n += 1
