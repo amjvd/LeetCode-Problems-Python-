@@ -1,0 +1,20 @@
+class Solution(object):
+    def countValidSelections(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        left = 0
+        output = 0
+        right = 0
+        for x in range(len(nums)):
+            if nums[x] == 0:
+                left = sum(nums[0:x])
+                right = sum(nums[x+1:len(nums)])
+                if left == right:
+                    output +=2
+                if left - right == 1:
+                    output +=1
+                if left - right == -1:
+                    output +=1
+        return output
