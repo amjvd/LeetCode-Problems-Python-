@@ -1,0 +1,20 @@
+class Solution(object):
+    def totalMoney(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        output = 0
+
+        def add(n, m):
+            return ((n * (n + 1)) / 2) - ((m * (m + 1)) / 2)
+
+        weeks = n // 7
+        days = n % 7
+
+        for x in range(weeks):
+            output += add(7 + x, x)
+
+        output += add(weeks + days, weeks)
+
+        return int(output)
