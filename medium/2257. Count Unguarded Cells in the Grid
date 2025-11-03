@@ -1,0 +1,51 @@
+class Solution(object):
+    def countUnguarded(self, m, n, guards, walls):
+        """
+        :type m: int
+        :type n: int
+        :type guards: List[List[int]]
+        :type walls: List[List[int]]
+        :rtype: int
+        """
+        grid = [[1 for _ in range(n)] for _ in range(m)]
+
+        wall_set = set(map(tuple, walls))
+        guard_set = set(map(tuple, guards))
+
+        for x, y in wall_set:
+            grid[x][y] = 0
+
+        for x, y in guard_set:
+            grid[x][y] = -1
+            xp = 1
+            while x + xp < m:
+                if (x + xp, y) in wall_set or (x + xp, y) in guard_set:
+                    break
+                grid[x + xp][y] = -1
+                xp += 1
+            xm = 1
+            while x - xm >= 0:
+                if (x - xm, y) in wall_set or (x - xm, y) in guard_set:
+                    break
+                grid[x - xm][y] = -1
+                xm += 1
+            yp = 1
+            while y + yp < n:
+                if (x, y + yp) in wall_set or (x, y + yp) in guard_set:
+                    break
+                grid[x][y + yp] = -1
+                yp += 1
+            ym = 1
+            while y - ym >= 0:
+                if (x, y - ym) in wall_set or (x, y - ym) in guard_set:
+                    break
+                grid[x][y - ym] = -1
+                ym += 1
+
+        count = 0
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == 1:
+                    count += 1
+
+        return count
