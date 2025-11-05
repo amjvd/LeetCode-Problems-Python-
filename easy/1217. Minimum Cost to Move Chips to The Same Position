@@ -1,0 +1,16 @@
+class Solution(object):
+    def minCostToMoveChips(self, position):
+        """
+        :type position: List[int]
+        :rtype: int
+        """
+        odd = 0
+        even = 0
+        
+        for x in position:
+            if x == 0 or x % 2 == 0:
+                even += 1
+            else:
+                odd += 1
+        
+        return even if even < odd else odd
