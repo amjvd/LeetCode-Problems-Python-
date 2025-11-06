@@ -1,0 +1,22 @@
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution(object):
+    def getDecimalValue(self, head):
+        """
+        :type head: Optional[ListNode]
+        :rtype: int
+        """
+        stack = []
+        current = head
+        output = 0
+        
+        while current:
+            stack.append(current.val)
+            current = current.next
+        
+        for x in range(len(stack)):
+            output += ((2**x) * stack[-(x+1)])
+        return output
