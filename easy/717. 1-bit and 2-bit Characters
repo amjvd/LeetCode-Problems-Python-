@@ -1,0 +1,20 @@
+class Solution(object):
+    def isOneBitCharacter(self, bits):
+        """
+        :type bits: List[int]
+        :rtype: bool
+        """
+        end = len(bits)
+        skip = False
+
+        for x in range(end):
+            if skip == True:
+                if x == end-1:
+                    return False
+                else:
+                    skip = False
+            elif skip == False:
+                if x == end-1:
+                    return True
+                if bits[x] == 1:
+                    skip = True
