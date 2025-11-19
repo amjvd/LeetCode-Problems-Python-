@@ -1,0 +1,13 @@
+class Solution(object):
+    def findFinalValue(self, nums, original):
+        """
+        :type nums: List[int]
+        :type original: int
+        :rtype: int
+        """
+        num = set(nums)
+
+        while original in num:
+            original = original * 2
+
+        return original
