@@ -1,0 +1,27 @@
+class Solution(object):
+    def numSub(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        def sub(x):
+            return (x * (x + 1)) // 2 
+
+        current = 0
+        total = 0
+        mod = 1000000007
+
+        for char in s:
+            if char == '1':
+                current += 1
+            else:
+                if current > 0:
+                    total += sub(current)
+                    current = 0
+
+        if current > 0:
+            total += sub(current)
+    
+        total = total % mod
+
+        return total
