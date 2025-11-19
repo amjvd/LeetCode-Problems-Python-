@@ -1,0 +1,17 @@
+class Solution(object):
+    def kLengthApart(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: bool
+        """
+        
+        prev = -1
+
+        for x in range(len(nums)):
+            if nums[x] == 1:
+                if prev != -1 and x - prev <= k:
+                    return False
+                prev = x 
+
+        return True
