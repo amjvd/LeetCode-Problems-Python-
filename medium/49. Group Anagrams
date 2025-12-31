@@ -1,0 +1,15 @@
+class Solution(object):
+    def groupAnagrams(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: List[List[str]]
+        """
+        seen = {}
+        for s in strs:
+            key = tuple(sorted(s))
+            if key in seen:
+                seen[key].append(s)
+            else:
+                seen[key] = [s]
+
+        return list(seen.values())
