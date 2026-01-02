@@ -1,0 +1,44 @@
+class Solution(object):
+    def checkInclusion(self, s1, s2):
+        """
+        :type s1: str
+        :type s2: str
+        :rtype: bool
+        """
+        if len(s1) > len(s2):
+            return False
+        seen1 = {}
+        seen2 = {}
+
+        window = len(s1)
+
+        for x in s1:
+            if x in seen1:
+                seen1[x] += 1
+            else:
+                seen1[x] = 1
+        
+        for x in range(window):
+            if s2[x] in seen2:
+                seen2[s2[x]] +=1
+            else:
+                seen2[s2[x]] = 1
+        
+        if seen1 == seen2:
+                return True
+        
+        l = 0
+        r = window
+
+        while r < len(s2):
+            seen2[s2[l]] -=1
+            if seen2[s2[l]] == 0:
+                del seen2[s2[l]]
+            seen2[s2[r]] = seen2.get(s2[r], 0) + 1
+            if seen1 == seen2:
+                return True
+            r +=1
+            l += 1
+
+
+        return False
